@@ -1,0 +1,6 @@
+---
+- name: Configure time synchronization
+  hosts: "{{ target | default('all') }}"
+  become: true
+  roles:
+    - role: redhat.rhel_system_roles.timesync
