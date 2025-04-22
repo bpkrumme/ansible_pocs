@@ -4,3 +4,4 @@
   become: true
   roles:
     - role: redhat.rhel_system_roles.timesync
+...

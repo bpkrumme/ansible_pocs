@@ -1,0 +1,7 @@
+---
+- name: Configure AIDE
+  hosts: "{{ target | default('all') }}"
+  become: true
+  roles:
+    - role: redhat.rhel_system_roles.aide
+...
