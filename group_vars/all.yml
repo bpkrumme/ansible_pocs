@@ -8,8 +8,8 @@ timesync_ntp_servers:
     iburst: true
   - hostname: 3.rhel.pool.ntp.org
     iburst: true
-selinux_policy: targeted
-selinux_state: enforcing
+# selinux_policy: targeted
+selinux_state: disabled
 crypto_policies_policy: "DEFAULT:NO-SHA1"
 crypto_policies_reload: true
 tlog_scope_sssd: all
