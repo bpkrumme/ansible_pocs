@@ -7,16 +7,20 @@
       ansible.builtin.package:
         name: httpd
         state: present
+
     - name: Start and enable the httpd Service
       ansible.builtin.service:
         name: httpd
         status: started
         enabled: true
+
     - name: Copy some basic content to the webserver
       ansible.builtin.copy:
         src: files/index.html
         dest: /var/www/html/index.html
+        mode: '0644'
       notify: Restart httpd
+
     - name: Ensure the firewall is opened
       ansible.posix.firewalld:
         service: "{{ item }}"
