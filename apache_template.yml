@@ -15,7 +15,7 @@
         enabled: true
 
     - name: Copy some basic content to the webserver
-      ansible.builtin.copy:
+      ansible.builtin.template:
         src: templates/index.html.j2
         dest: /var/www/html/index.html
         mode: '0644'
