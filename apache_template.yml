@@ -16,7 +16,7 @@
 
     - name: Copy some basic content to the webserver
       ansible.builtin.copy:
-        src: files/index.html
+        src: templates/index.html.j2
         dest: /var/www/html/index.html
         mode: '0644'
       notify: Restart httpd
