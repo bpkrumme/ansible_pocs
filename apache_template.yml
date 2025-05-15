@@ -21,15 +21,15 @@
         mode: '0644'
       notify: Restart httpd
 
-    - name: Ensure the firewall is opened
-      ansible.posix.firewalld:
-        service: "{{ item }}"
-        state: enabled
-        immediate: true
-        permanent: true
-      loop:
-        - http
-        - https
+#    - name: Ensure the firewall is opened
+#      ansible.posix.firewalld:
+#        service: "{{ item }}"
+#        state: enabled
+#        immediate: true
+#        permanent: true
+#      loop:
+#        - http
+#        - https
 
   handlers:
     - name: Restart httpd
