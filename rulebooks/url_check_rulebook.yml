@@ -1,0 +1,18 @@
+---
+- name: Watch a URL for site availability
+  hosts: all
+  sources:
+    - name: Check a URL
+      ansible.eda.url_check:
+        urls:
+          - http://devweb01.bk.lab
+        delay: 60
+        verify_ssl: false
+
+  rules:
+    - name: Redeploy site with current content
+      condition: event.url_check.status == "down"
+      action:
+        run_job_template:
+          name: "POC - Deploy Apache with Dynamic Content"
+          organization: HomeLab
