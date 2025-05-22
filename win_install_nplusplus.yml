@@ -1,7 +1,6 @@
 ---
 - name: Install Notepad++ on Windows machines
   hosts: "{{ target | default('all') }}"
-  become: true
   tasks:
     - name: Get the Notepad++ package
       ansible.windows.win_get_url:

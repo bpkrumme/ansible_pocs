@@ -1,7 +1,6 @@
 ---
 - name: Install IIS including subfeatures and management tools
   hosts: "{{ target | default('all') }}"
-  become: true
   tasks:
     - name: Install IIS Web-Server with sub features and management tools
       ansible.windows.win_feature:
