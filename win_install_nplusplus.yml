@@ -2,14 +2,9 @@
 - name: Install Notepad++ on Windows machines
   hosts: "{{ target | default('all') }}"
   tasks:
-    - name: Get the Notepad++ package
-      ansible.windows.win_get_url:
-        url: https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.8.1/npp.8.8.1.Installer.x64.exe
-        dest: '%TEMP%\nppinstaller.exe'
-
     - name: Install the Notepad++ package
       ansible.windows.win_package:
-        path: '%TEMP%\nppinstaller.exe'
+        path: https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.8.1/npp.8.8.1.Installer.x64.exe
         state: present
         arguments:
           - /S
