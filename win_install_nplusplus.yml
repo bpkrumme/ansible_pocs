@@ -1,0 +1,11 @@
+---
+- name: Install NotepadPlusPlus on Windows machines
+  hosts: "{{ target | default('all') }}"
+  become: true
+  tasks:
+    - name: Install the NotepadPlusPlus package
+      ansible.windows.win_package:
+        path: https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.8.1/npp.8.8.1.Installer.x64.exe
+        state: present
+        arguments:
+          - /S
