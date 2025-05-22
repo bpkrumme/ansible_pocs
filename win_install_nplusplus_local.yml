@@ -1,0 +1,10 @@
+---
+- name: Install Package on Windows machines
+  hosts: "{{ target | default('all') }}"
+  tasks:
+    - name: Install the package
+      ansible.windows.win_package:
+        path: "{{ installer_path }}"
+        state: present
+        arguments:
+          - /S
