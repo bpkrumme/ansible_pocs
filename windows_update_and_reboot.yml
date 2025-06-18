@@ -1,5 +1,5 @@
 ---
-- name: Install all windows updates without rebooting
+- name: Install all windows updates with conditional reboots
   hosts: all
   gather_facts: false
   tasks:
