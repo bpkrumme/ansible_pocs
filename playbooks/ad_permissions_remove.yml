@@ -1,0 +1,33 @@
+---
+- name: Remove all permissions from a user in AD
+  hosts: "{{ domain_controller | default('dc1') }}"
+  become: false
+  tasks:
+    - name: Gather Effective Permissions for user in Active Directory with microsoft.ad
+      microsoft.ad.object_info:
+
+        identity: "{{ _identity_ }}"
+        properties:
+          - effectivePermissions
+      register: user_info
+
+    - name: Disable user and mark password expired
+      microsoft.ad.user:
+        name: "{{ _name_ }}"
+        state: present
+        enabled: false
+        password_expired: true
+        path: "{{ user_info.ansible_facts.effectivePermissions.distinguishedName }}"
+
+    - name: Remove GPO from Active Directory User with microsoft.ad
+      microsoft.ad.membership:
+        state: absent
+      loop: "{{ user_info.object.effectivePermissions.groups }}"
+    
+    - name: Remove Active Directory User from AD Groups with microsoft.ad
+      microsoft.ad.group:
+        name: "{{ item }}"
+        members: "{{ _members_ }}"
+        state: absent
+      loop: "{{ user_info.ansible_facts.effectivePermissions.groups }}"
+
